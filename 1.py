@@ -9,7 +9,7 @@ st.title("城市天气查询")
 selected_city = st.selectbox("请选择城市", ["北京", "上海", "广州", "深圳"])
 
 # 根据用户选择的城市获取气温信息的URL
-weather_api_url = f"https://wttr.in/{selected_city}?format=3"
+weather_api_url = f"https://wttr.in/{selected_city}?m&format=3"
 # 发送HTTP请求获取气温信息
 response = requests.get(weather_api_url)
 
