@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 
 # Streamlit应用程序的标题
-st.title("城市天气查询")
+st.title("城市天气查询 - By：林天宇")
 
 # 创建一个下拉菜单，用户可以选择城市
 selected_city = st.selectbox("请选择城市", ["北京", "上海", "广州", "深圳"])
