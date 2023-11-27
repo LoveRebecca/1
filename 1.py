@@ -3,27 +3,20 @@ import streamlit as st
 import requests
 
 # Streamlit应用程序的标题
-st.title("城市气温查询")
+st.title("城市天气查询")
 
 # 创建一个下拉菜单，用户可以选择城市
 selected_city = st.selectbox("请选择城市", ["北京", "上海", "广州", "深圳"])
 
 # 根据用户选择的城市获取气温信息的URL
-weather_api_url = f"https://wttr.in/{selected_city}?format=%t"
+weather_api_url = f"https://wttr.in/{selected_city}?format=3"
 # 发送HTTP请求获取气温信息
 response = requests.get(weather_api_url)
 
 # 检查请求是否成功
 if response.status_code == 200:
-    # 从响应中提取温度值（包含°F）
-    temperature_with_unit = response.text.strip()
-    temperature_value = float(temperature_with_unit[:-2])  # 去掉最后的°F并转为浮点数
-
-    # 将气温从华氏度转换为摄氏度
-    temperature_celsius = (temperature_value - 32) * 5 / 9
-
     # 显示气温信息
-    st.write(f"{selected_city}的气温：{temperature_celsius:.2f}°C")
+    st.write(f"{response.text}")
 else:
     # 如果请求失败，显示错误消息
     st.error("获取气温信息时出现错误，请重试。")
