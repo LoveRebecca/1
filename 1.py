@@ -15,8 +15,12 @@ response = requests.get(weather_api_url)
 
 # 检查请求是否成功
 if response.status_code == 200:
+    # 将气温从华氏度转换为摄氏度
+    temperature_fahrenheit = float(response.text)
+    temperature_celsius = (temperature_fahrenheit - 32) * 5 / 9
+
     # 显示气温信息
-    st.write(f"{selected_city}的气温：{response.text}")
+    st.write(f"{selected_city}的气温：{temperature_celsius:.2f}°C")
 else:
     # 如果请求失败，显示错误消息
     st.error("获取气温信息时出现错误，请重试。")
